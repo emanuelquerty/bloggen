@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <title>My amazing blog!</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+      name="description"
+      content="Wow, like and subscribe, it really helps the channel guys"
+      lang="en"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <p class="header__blog-name">Blog Name</p>
+        <input type="checkbox" id="hamburger" />
+        <label for="hamburger" class="header_hamburger"></label>
+        <nav class="header__nav">
+          <a href="/" class="nav__link">home</a></li>
+          <a href="about" class="nav__link">about</a>
+          <a href="archive" class="nav__link">archive</a> 
+        </nav>
+      </header>
+      <main>
+      
+<h1>hello world</h1>
+
+<p>This is a post</p>
+ 
+        </main>
+        <footer>
+            <ul>
+                <li><a href="https://twitter.com/emanuelquery">Twitter</a></li>
+                <li><a href="https://github.com/emanuelquery">GitHub</a></li>
+            </ul>
+        </footer>
+        </div>      
+    </body>
+</html>
+

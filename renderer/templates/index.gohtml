@@ -1,0 +1,13 @@
+{{template "top" .}}
+<h1>Archive</h1>
+<div class="all-posts">
+  {{ range .}}
+    <div class="all-posts__post-preview">
+      <h2 class="post-preview__title">{{ .Title }}</h2>
+      <p class="post-preview__description"> {{ .Description }} </p>
+      <a href="./posts/{{.SanitizeTitle}}" class="post-preview__btn"> Read More </a>
+    </div>
+  {{end}}
+</div>
+{{template "bottom" .}}
+  
