@@ -11,7 +11,7 @@ import (
 )
 
 func TestNewBlogSite(t *testing.T) {
-	markdownFS := os.DirFS("cmd/markdown")
+	markdownFS := os.DirFS("cmd/bloggen/markdown")
 	blogDirectory := "testbuild"
 	bloggen.NewBlogSite(markdownFS, blogDirectory)
 
