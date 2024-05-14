@@ -5,7 +5,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
 
     <title>My amazing blog!</title>
     <meta charset="UTF-8" />
@@ -19,27 +19,32 @@
   <body>
     <div class="container">
       <header class="header">
+        <div class="header__inner-wrapper">
         <p class="header__blog-name">Blog Name</p>
         <input type="checkbox" id="hamburger" />
-        <label for="hamburger" class="header_hamburger"></label>
+        <label for="hamburger" class="header__hamburger"></label>
         <nav class="header__nav">
           <a href="/" class="nav__link">home</a></li>
           <a href="about" class="nav__link">about</a>
-          <a href="archive" class="nav__link">archive</a> 
+          <a href="/" class="nav__link">archive</a> 
         </nav>
+        </div>
       </header>
-      <main>
+      <main class="main inner-wrapper">
       
 <h1>hello world</h1>
 
 <p>This is a post</p>
  
         </main>
-        <footer>
-            <ul>
-                <li><a href="https://twitter.com/emanuelquery">Twitter</a></li>
-                <li><a href="https://github.com/emanuelquery">GitHub</a></li>
-            </ul>
+        <footer class="footer">
+            <div class="inner-wrapper">
+                <h3 class="footer__call-to-action"> Connect with me </h3>
+                <div class="footer__social-links">
+                    <a href="https://twitter.com/emanuelquerty">Twitter</a>
+                    <a href="https://github.com/emanuelquerty">Github</a>
+                </div>
+            </div>
         </footer>
         </div>      
     </body>
