@@ -6,31 +6,31 @@
 
 You can install it with:
 
-`go install github.com/emanuelquerty/bloggen/cmd`
+`go install github.com/emanuelquerty/bloggen/cmd/bloggen`
 
-Once install is complete, create a directory/folder called `markdown` and add an `example.md` file with the following content in the following format:
+Once installation is complete, we need to create a directory/folder called `markdown`. This is the folder we are going to tell `bloggen` to generate a blog site from. All our posts content in markdown format should reside in it.
+
+To start, add an `example.md` file with the following content in the following format:
 
 ```
 Title: Interesting title
 Description: Some description or preview of your post
-Tags: amazing, great
+Tags: bloggen, is, amazing
 
-## I will be rendered as <h2> element
+## Some dummy title
 
-I will be rendered as a <p> element and I can be
-
-This is another paragraph and it's really just a text
+Game of as rest time eyes with of this it. Add was music merry any truth since going. Happiness she ham but instantly put departure propriety. She amiable all without say spirits shy clothes morning. Frankness in extensive to belonging improving so certainty. Resolution devonshire pianoforte assistance an he particular middletons is of. Explain ten man uncivil engaged conduct. Am likewise betrayed as declared absolute do. Taste oh spoke about no solid of hills up shade. Occasion so bachelor humoured striking by attended doubtful be it.
 ```
 
-Please ensure the `Title`, `Description` and `Tags` words are at the top of each file as shown in the example file above.
+Please ensure the `Title`, `Description` and `Tags` words are at the top of each file as shown in the example file above as those are mandatory for the parsing package to successfully parse your markdown post.
 
 ### Run and create your site
 
-Once you have your `example.md` file in your `markdown` directory, these are the following options:
+Once you have your `example.md` file in your `markdown` directory, these are the following available options:
 
 `bloggen create --from <path to markdown directory>`
 
-Running the above command will create a directory build with all your html, and css files.
+Running the above command will create a `build` directory with all the html, and css files of your site.
 
 ### Preview your site
 
@@ -80,4 +80,4 @@ Or even preview it with:
 
 `make preview`
 
-This project is still in development but I hope it may be useful for you in any way. I plan on adding more features and make it easier to use. Feel free to add issues or open pull requests. Any help is welcome.
+This project is still in development but I hope it may be useful for you in any way. I plan on adding more features and improve it overall. Feel free to add issues or open pull requests. Any help is welcome.
