@@ -17,21 +17,40 @@ import (
 
 //go:embed assets
 var assets embed.FS
+
 const serverPort = "3000"
 
 func main() {
+	if len(os.Args) < 2 {
+		programUsage(os.Stdout)
+		return
+	}
+
+	if os.Args[1] == "--help" || os.Args[1] == "-help" {
+		programUsage(os.Stdout)
+		return
+	}
+
+	command := os.Args[1]
 	markdownDir := MardownDir{}
 	flagSet := flag.NewFlagSet("bloggen", flag.ExitOnError)
 	flagSet.Var(&markdownDir, "from", "the name of the directory that contains all markdown files")
-	
-	flagSet.Usage = func() {programUsage(os.Stdout)}
+	help := flagSet.Bool("help", false, "Display help")
+
 	err := flagSet.Parse(os.Args[2:])
-	if err != nil {
-		log.Fatal(err)
+	if err != nil || *help {
+		programUsage(os.Stdout)
+		return
+	}
+
+	if markdownDir.path == "" {
+		fmt.Println("Error: --from flag is required")
+		programUsage(os.Stdout)
+		return
 	}
 
 	stat, err := os.Stat(markdownDir.path)
-	if  errors.Is(err, os.ErrNotExist) || !stat.IsDir() {
+	if errors.Is(err, os.ErrNotExist) || !stat.IsDir() {
 		fmt.Printf("bloggen: %s: no such directory\n", markdownDir.path)
 		return
 	}
@@ -43,20 +62,21 @@ func main() {
 	}
 
 	destinationDirname := filepath.Join(parentDir, "build")
-	switch os.Args[1] {
+	switch command {
 	case "create":
 		buildSite(sourceMarkdown, destinationDirname)
 	case "preview":
 		preview(sourceMarkdown, destinationDirname)
 	default:
-		fmt.Printf("bloggen: %s: command not found \n\nTry 'bloggen --help' for more information.\n", os.Args[1])
+		fmt.Printf("bloggen: %s: command not found \n\nTry 'bloggen --help' for more information.\n", command)
+		programUsage(os.Stdout)
 	}
 }
 
 func buildSite(sourceMarkdown fs.FS, destinationDirname string) {
 	// const colorGreen = "\033[0;32m"
 	// const colorWhite = "\033[0;37m"
-	
+
 	fmt.Printf("\nScaffolding your website in %s\n", destinationDirname)
 	bloggen.NewBlogSite(sourceMarkdown, destinationDirname)
 	fmt.Printf("Build directory created.\n\n")
@@ -75,13 +95,13 @@ func preview(sourceMarkdown fs.FS, destinationDirname string) {
 	const colorWhite = "\033[0;37m"
 
 	buildSite(sourceMarkdown, destinationDirname)
-	fmt.Printf("\n%sYour site is available for preview on %s http://localhost:%s/ \n\n",colorWhite, colorRed, serverPort)
+	fmt.Printf("\n%sYour site is available for preview on %s http://localhost:%s/ \n\n", colorWhite, colorRed, serverPort)
 	startServer(serverPort)
 }
 
 func startServer(portnumber string) {
 	staticFileServer := http.FileServer(staticDir{http.Dir("build")})
-	log.Fatal(http.ListenAndServe(":" + portnumber, staticFileServer))
+	log.Fatal(http.ListenAndServe(":"+portnumber, staticFileServer))
 }
 
 func programUsage(w io.Writer) {
@@ -96,6 +116,6 @@ create      creates the site from DIRECTORY
 preview     creates the site from DIRECTORY and starts a server to preview the generated site
 
 Full documentation is available at <https://github.com/emanuelquerty/bloggen>`
-	
+
 	fmt.Fprintln(w, usageText)
 }
