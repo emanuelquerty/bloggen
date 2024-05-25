@@ -1,8 +1,8 @@
 build:
-	go build -o bin/bloggen cmd/*.go
+	go build -o bin/bloggen cmd/bloggen/*.go
 
 run: build
-	bin/bloggen create --from cmd/markdown
+	bin/bloggen create --from cmd/bloggen/markdown
 
 preview: build
-	bin/bloggen preview --from cmd/markdown
+	bin/bloggen preview --from cmd/bloggen/markdown
